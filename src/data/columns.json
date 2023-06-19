@@ -1,0 +1,33 @@
+[
+  {
+    "title": "Not Started",
+    "color": "linear-gradient(25deg, rgb(214, 76, 127), rgb(238, 71, 88) 50%)",
+    "todos": [
+      {
+        "name": "First Todo",
+        "id": 1,
+        "draggable": true
+      },
+      {
+        "name": "Second Todo",
+        "id": 2,
+        "draggable": true
+      },
+      {
+        "name": "Third Todo",
+        "id": 3,
+        "draggable": true
+      }
+    ]
+  },
+  {
+    "title": "In Process",
+    "color": "radial-gradient(circle at 12.3% 19.3%, rgb(85, 88, 218) 0%, rgb(95, 209, 249) 100.2%)",
+    "todos": []
+  },
+  {
+    "title": "Complete",
+    "color": "linear-gradient(to top, #0ba360 0%, #3cba92 100%)",
+    "todos": []
+  }
+]
