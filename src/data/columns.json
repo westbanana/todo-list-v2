@@ -6,16 +6,19 @@
       {
         "name": "First Todo",
         "id": 1,
+        "order": 3,
         "draggable": true
       },
       {
         "name": "Second Todo",
         "id": 2,
+        "order": 2,
         "draggable": true
       },
       {
         "name": "Third Todo",
         "id": 3,
+        "order": 1,
         "draggable": true
       }
     ]
