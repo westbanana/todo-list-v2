@@ -1,0 +1,22 @@
+[
+  {
+    "id": 1,
+    "name": "Piggy Pink",
+    "gradient":"linear-gradient(to right, #ee9ca7, #ffdde1)"
+  },
+  {
+    "id": 2,
+    "name": "Color Of Sky",
+    "gradient":"linear-gradient(to right, #e0eafc, #cfdef3)"
+  },
+  {
+    "id": 3,
+    "name": "Blu",
+    "gradient":"linear-gradient(to right, #00416a, #e4e5e6)"
+  },
+  {
+    "id": 4,
+    "name": "Cool Sky",
+    "gradient":"linear-gradient(to right, #2980b9, #6dd5fa, #ffffff)"
+  }
+]
