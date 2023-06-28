@@ -160,8 +160,8 @@ const ChangeColorMenu = (props) => {
           >
             {gradients.map(({id, name, gradient}) => (
               <div
-                onMouseEnter={() => mouseEnterHandler(gradient)}
-                onMouseLeave={mouseLeaveHandler}
+                // onMouseEnter={() => mouseEnterHandler(gradient)}
+                // onMouseLeave={mouseLeaveHandler}
                 onClick={() => onClickVariantsHanlder(gradient)}
                 className={styles.gradientVariant}
                 title={name}
