@@ -3,4 +3,9 @@
   width: 100%;
   position: relative;
   overflow: hidden;
+  transition: background 0.3s;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
 }
