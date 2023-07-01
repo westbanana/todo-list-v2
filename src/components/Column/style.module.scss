@@ -36,6 +36,7 @@
   .todoList {
     display: flex;
     flex-direction: column;
+    min-height: 28px;
     height: calc(100% - 75px);
     overflow: auto;
     gap: 20px;
@@ -77,6 +78,7 @@
     height: 100%;
     width: 100%;
     cursor: grab;
+    animation: showTodo 0.3s ease-in forwards;
     &::-webkit-scrollbar {
       width: 4px
     }
@@ -89,5 +91,14 @@
       background: rgba(0, 0, 0, 0.32);
       border-radius: 5px;
     }
+  }
+}
+
+@keyframes showTodo {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
   }
 }
