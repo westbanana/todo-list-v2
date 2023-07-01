@@ -1,7 +1,29 @@
 import {createSlice} from "@reduxjs/toolkit";
 
 const initialState = {
-  columns: JSON.parse(localStorage.getItem('columns')) || [],
+  columns: JSON.parse(localStorage.getItem('columns'))?.length
+    ? JSON.parse(localStorage.getItem('columns'))
+    : [
+        {
+          id: 1,
+          title: 'Not started',
+          todos: [
+          ],
+          color: '#FF1818'
+        },
+        {
+          id: 2,
+          title: 'In progress',
+          todos: [],
+          color: '#1890FF'
+        },
+        {
+          id: 3,
+          title: 'Completed',
+          todos: [],
+          color: '#14DE7D'
+        },
+      ],
 };
 
 const columnsSlice = createSlice({
