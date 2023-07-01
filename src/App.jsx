@@ -1,6 +1,6 @@
 import './App.module.scss'
 import styles from './App.module.scss'
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import ChangeColorMenu from "./components/ChangeColorMenu/index.jsx";
 import Column from "./components/Column/index.jsx";
 const App = () => {
@@ -67,29 +67,30 @@ const App = () => {
           description: 'Third todo',
         },
       ],
-      color: 'red'
+      color: '#FF1818'
     },
     {
       id: 2,
       title: 'In progress',
       todos: [],
-      color: 'blue'
+      color: '#1890FF'
     },
     {
       id: 3,
       title: 'Completed',
       todos: [],
-      color: 'green'
+      color: '#14DE7D'
     },
   ]);
   const [userBackgroundColor, setUserBackGroundColor] = useState(
-    localStorage.getItem('backgroundColor') ?? ''
-  )
-
+    localStorage.getItem('backgroundColor')
+    ?? 'radial-gradient(circle at 10% 20%, rgb(0, 107, 141) 0%, rgb(0, 69, 91) 90%)'
+  );
+  
   return (
     <div
       style={{
-        background: userBackgroundColor ?? 'white',
+        background: userBackgroundColor,
       }}
       id='mainBackgroundId'
       className={styles.main}
