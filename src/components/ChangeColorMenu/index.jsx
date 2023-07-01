@@ -9,7 +9,6 @@ const ChangeColorMenu = (props) => {
     initialValue,
     callback
   } = props
-  console.log(initialValue);
   const [isOpened, setIsOpened] = useState(false);
   const [textAreaValue, setTextAreaValue] = useState(initialValue);
   const refColorPaletteBlock = useRef(null);
@@ -50,11 +49,20 @@ const ChangeColorMenu = (props) => {
   useEffect(() => {
     const body = document.querySelector('body');
     const colorPaletteBlock = refColorPaletteBlock?.current;
+    const blurBlock = document.querySelector('#blurBlock');
     if (isOpened) {
       body.style.pointerEvents = 'none';
       colorPaletteBlock.style.pointerEvents = 'all';
       document.addEventListener('click', handleClickOutside);
+      blurBlock.style.left = '0%';
+      setTimeout(() => {
+        blurBlock.style.opacity = '1';
+      }, 300)
     } else {
+      blurBlock.style.opacity = '0';
+      setTimeout(() => {
+        blurBlock.style.left = '-100%';
+      }, 300)
       body.style.pointerEvents = '';
       colorPaletteBlock.style.pointerEvents = '';
       document.removeEventListener('click', handleClickOutside);
@@ -97,17 +105,7 @@ const ChangeColorMenu = (props) => {
   const viewAllClickHanlder = () => {
     setViewAll(prev => !prev)
   };
-  // useEffect(() => {
-  //   if (refGradientList.current) {
-  //     if (viewAll) {
-  //       refGradientList.current.style.height = '100%'
-  //       // refGradientList.current.style.overflow = 'auto'
-  //     } else {
-  //       refGradientList.current.style.height = ''
-  //       // refGradientList.current.style.overflow = 'hidden'
-  //     }
-  //   }
-  // }, [viewAll])
+
   return (
     <div
       ref={refColorPaletteBlock}
@@ -160,8 +158,6 @@ const ChangeColorMenu = (props) => {
           >
             {gradients.map(({id, name, gradient}) => (
               <div
-                // onMouseEnter={() => mouseEnterHandler(gradient)}
-                // onMouseLeave={mouseLeaveHandler}
                 onClick={() => onClickVariantsHanlder(gradient)}
                 className={styles.gradientVariant}
                 title={name}
