@@ -98,6 +98,10 @@ const App = () => {
         initialValue={userBackgroundColor}
         callback={setUserBackGroundColor}
       />
+      <div
+        id='blurBlock'
+        className={styles.blurBlock}
+      />
       {columns.map(column => (
         <Column
           key={column.id}
