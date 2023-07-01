@@ -79,7 +79,7 @@ const ChangeColorMenu = (props) => {
 
   const acceptClickHandler = () => {
     callback(textAreaValue);
-    localStorage.setItem('backgroundColor', textAreaValue);
+    localStorage.setItem('savedBackgroundColor', textAreaValue);
     setIsOpened(false);
   }
 
