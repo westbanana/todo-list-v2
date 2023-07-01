@@ -9,3 +9,15 @@
   justify-content: space-around;
   align-items: center;
 }
+
+.blurBlock {
+  height: 100vh;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(3px);
+  position: absolute;
+  z-index: 1;
+  opacity: 0;
+  left: -100%;
+  transition: 0.3s;
+}
