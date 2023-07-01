@@ -2,6 +2,8 @@ import React, {useState} from 'react';
 
 import styles from './style.module.scss'
 
+import {ReactComponent as AddIcon} from "../../assets/add.svg";
+
 const Column = ({data}) => {
   const {
     id,
@@ -11,6 +13,9 @@ const Column = ({data}) => {
   } = data
   return (
     <div className={styles.mainColumnBlock}>
+        <div className={styles.addIconBlock}>
+          <AddIcon className={styles.addIcon}/>
+        </div>
         <div className={styles.columnTitleBlock}>
           <span
             className={styles.columnTitle}
@@ -36,8 +41,9 @@ const Column = ({data}) => {
             </div>
           ))}
         </div>
+        <div className={styles.bottomShadow}/>
     </div>
   );
-};
+  };
 
-export default Column;
+  export default Column;
