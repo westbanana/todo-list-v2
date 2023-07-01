@@ -15,12 +15,15 @@ const Column = ({data}) => {
   const {
     addTodo
   } = useActions()
+  const addTodoClickHandler = () => {
+    addTodo(id);
+  };
   return (
     <div className={styles.mainColumnBlock}>
         <div className={styles.addIconBlock}>
           <AddIcon
             className={styles.addIcon}
-            onClick={() => addTodo(id)}
+            onClick={addTodoClickHandler}
           />
         </div>
         <div className={styles.columnTitleBlock}>
