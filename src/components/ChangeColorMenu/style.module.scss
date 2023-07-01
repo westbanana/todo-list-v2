@@ -2,6 +2,7 @@
   height: 22px;
   width: 22px;
   position: absolute;
+  z-index: 2;
   right: 15px;
   top: 10px;
   .colorInputBlock {
@@ -13,7 +14,7 @@
     padding: 10px 16px;
     box-sizing: border-box;
     box-shadow: rgba(0, 0, 0, 0.15) 3px 3px 5px;
-    animation: showInputBlock 0.3s linear forwards;
+    animation: showInputBlock 0.3s ease-in-out forwards;
     transition: all 0.3s;
   }
   .textAreaBlock {
