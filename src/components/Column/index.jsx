@@ -3,6 +3,7 @@ import React, {useState} from 'react';
 import styles from './style.module.scss'
 
 import {ReactComponent as AddIcon} from "../../assets/add.svg";
+import {useActions} from "../../hooks/useActions.js";
 
 const Column = ({data}) => {
   const {
@@ -11,10 +12,16 @@ const Column = ({data}) => {
     todos,
     color
   } = data
+  const {
+    addTodo
+  } = useActions()
   return (
     <div className={styles.mainColumnBlock}>
         <div className={styles.addIconBlock}>
-          <AddIcon className={styles.addIcon}/>
+          <AddIcon
+            className={styles.addIcon}
+            onClick={() => addTodo(id)}
+          />
         </div>
         <div className={styles.columnTitleBlock}>
           <span
