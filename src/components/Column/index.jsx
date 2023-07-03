@@ -4,6 +4,7 @@ import styles from './style.module.scss'
 
 import {ReactComponent as AddIcon} from "../../assets/add.svg";
 import {useActions} from "../../hooks/useActions.js";
+import {FaXmark} from "react-icons/fa6";
 
 const Column = ({data}) => {
   const {
@@ -13,17 +14,22 @@ const Column = ({data}) => {
     color
   } = data
   const {
-    addTodo
+    addTodo,
+    deleteTodo
   } = useActions()
-  const addTodoClickHandler = () => {
-    addTodo(id);
+  const addTodoClickHandler = (columnId) => {
+    addTodo({columnId});
   };
+  const deleteTodoHanlder = (columnId, todoId) => {
+    deleteTodo({columnId, todoId})
+  }
+
   return (
     <div className={styles.mainColumnBlock}>
         <div className={styles.addIconBlock}>
           <AddIcon
             className={styles.addIcon}
-            onClick={addTodoClickHandler}
+            onClick={() => addTodoClickHandler(id)}
           />
         </div>
         <div className={styles.columnTitleBlock}>
@@ -37,10 +43,10 @@ const Column = ({data}) => {
         </span>
         </div>
         <div className={styles.todoList}>
-          {todos.map(({id, description}) => (
+          {todos.map(({id: todoId, description}) => (
             <div
               draggable={true}
-              key={id}
+              key={todoId}
               className={styles.todoBlock}
             >
               <span
@@ -48,6 +54,16 @@ const Column = ({data}) => {
               >
                 {description}
               </span>
+              <div
+                onClick={() => deleteTodoHanlder(
+                  id,
+                  todoId
+                )}
+                className={styles.xMarkIcon}
+              >
+                <FaXmark
+                />
+              </div>
             </div>
           ))}
         </div>
