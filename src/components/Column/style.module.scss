@@ -55,13 +55,6 @@
     }
   }
 
-  .todoBlock {
-    width: calc(100% - 26px);
-    border-radius: 15px 15px;
-    padding: 15px 20px;
-    box-shadow: inset rgba(0, 0, 0, 25%) 0 0 4px;
-    position: relative;
-  }
   .xMarkIcon {
     position: absolute;
     right: -20px;
@@ -86,27 +79,6 @@
     background: white;
     opacity: 0.9;
     filter: blur(5px);
-  }
-  .todo {
-    outline: none;
-    resize: none;
-    border: none;
-    height: 100%;
-    width: 100%;
-    cursor: grab;
-    animation: showTodo 0.3s ease-in forwards;
-    &::-webkit-scrollbar {
-      width: 4px
-    }
-
-    &::-webkit-scrollbar-track {
-      background: transparent;
-    }
-
-    &::-webkit-scrollbar-thumb {
-      background: rgba(0, 0, 0, 0.32);
-      border-radius: 5px;
-    }
   }
 }
 
