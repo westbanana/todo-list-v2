@@ -5,6 +5,7 @@ import ChangeColorMenu from "./components/ChangeColorMenu/index.jsx";
 import Column from "./components/Column/index.jsx";
 import { useSelector} from "react-redux";
 import {useActions} from "./hooks/useActions.js";
+import {BsFillTrashFill} from "react-icons/bs";
 const App = () => {
   const { columns } = useSelector(prev => prev.columns)
   const { backGroundColor } = useSelector(prev => prev.background)
