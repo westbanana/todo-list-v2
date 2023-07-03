@@ -1,0 +1,44 @@
+.todoBlock {
+  width: calc(100% - 26px);
+  border-radius: 15px 15px;
+  padding: 15px 20px;
+  box-shadow: inset rgba(0, 0, 0, 25%) 0 0 4px;
+  position: relative;
+}
+
+.todo {
+  outline: none;
+  resize: none;
+  border: none;
+  height: 100%;
+  width: 100%;
+  cursor: grab;
+  animation: showTodo 0.3s ease-in forwards;
+  &::-webkit-scrollbar {
+    width: 4px
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.32);
+    border-radius: 5px;
+  }
+}
+
+.xMarkIcon {
+  position: absolute;
+  right: -20px;
+  top: 0;
+  transition: 0.3s;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  &:hover {
+    color: rgb(255, 24, 24);
+  }
+}
