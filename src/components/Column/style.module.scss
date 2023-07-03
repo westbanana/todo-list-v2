@@ -40,6 +40,7 @@
     height: calc(100% - 75px);
     overflow: auto;
     gap: 20px;
+    padding-bottom: 20px;
     &::-webkit-scrollbar {
       width: 4px
     }
@@ -55,10 +56,25 @@
   }
 
   .todoBlock {
-    width: calc(100% - 10px);
+    width: calc(100% - 26px);
     border-radius: 15px 15px;
     padding: 15px 20px;
     box-shadow: inset rgba(0, 0, 0, 25%) 0 0 4px;
+    position: relative;
+  }
+  .xMarkIcon {
+    position: absolute;
+    right: -20px;
+    top: 0;
+    transition: 0.3s;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    &:hover {
+      color: rgb(255, 24, 24);
+    }
   }
   .bottomShadow {
     position: absolute;
