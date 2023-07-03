@@ -5,6 +5,8 @@ import styles from './style.module.scss'
 import {ReactComponent as AddIcon} from "../../assets/add.svg";
 import {useActions} from "../../hooks/useActions.js";
 import {FaXmark} from "react-icons/fa6";
+import Todo from "../Todo/index.jsx";
+import AddTodoButton from "../AddTodoButton/index.jsx";
 
 const Column = ({data}) => {
   const {
@@ -13,25 +15,12 @@ const Column = ({data}) => {
     todos,
     color
   } = data
-  const {
-    addTodo,
-    deleteTodo
-  } = useActions()
-  const addTodoClickHandler = (columnId) => {
-    addTodo({columnId});
-  };
-  const deleteTodoHanlder = (columnId, todoId) => {
-    deleteTodo({columnId, todoId})
-  }
 
   return (
     <div className={styles.mainColumnBlock}>
-        <div className={styles.addIconBlock}>
-          <AddIcon
-            className={styles.addIcon}
-            onClick={() => addTodoClickHandler(id)}
-          />
-        </div>
+        <AddTodoButton
+          data={{columnId: id}}
+        />
         <div className={styles.columnTitleBlock}>
           <span
             className={styles.columnTitle}
@@ -44,27 +33,13 @@ const Column = ({data}) => {
         </div>
         <div className={styles.todoList}>
           {todos.map(({id: todoId, description}) => (
-            <div
-              draggable={true}
-              key={todoId}
-              className={styles.todoBlock}
-            >
-              <span
-                className={styles.todo}
-              >
-                {description}
-              </span>
-              <div
-                onClick={() => deleteTodoHanlder(
-                  id,
-                  todoId
-                )}
-                className={styles.xMarkIcon}
-              >
-                <FaXmark
-                />
-              </div>
-            </div>
+            <Todo
+              data={{
+                columnId: id,
+                todoId,
+                description
+              }}
+            />
           ))}
         </div>
         <div className={styles.bottomShadow}/>
