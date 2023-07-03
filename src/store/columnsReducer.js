@@ -7,8 +7,7 @@ const initialState = {
         {
           id: 1,
           title: 'Not started',
-          todos: [
-          ],
+          todos: [],
           color: '#FF1818'
         },
         {
@@ -31,11 +30,12 @@ const columnsSlice = createSlice({
   initialState: initialState,
   reducers: {
     deleteTodo: (state, {payload}) => {
+      const {columnId, todoId} = payload
       state.columns = state.columns.map(column => {
-        if (column.id === payload[0]) {
+        if (column.id === columnId) {
           return ({
             ...column,
-            todos: column.todos.filter(todo => todo.id !== payload[1])
+            todos: column.todos.filter(todo => todo.id !== todoId)
           })
         } else {
           return column
@@ -43,13 +43,14 @@ const columnsSlice = createSlice({
       })
     },
     addTodo: (state, {payload}) => {
-      const id = payload
+      console.log(payload)
+      const {columnId} = payload
       const newTodo = {
         description: 'New Todo',
         id: Date.now(),
       }
       state.columns = state.columns.map(column => {
-        if (column.id === id) {
+        if (column.id === columnId) {
           return ({
             ...column,
             todos: [newTodo,...column.todos]
