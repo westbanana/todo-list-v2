@@ -1,10 +1,7 @@
-import React, {useState} from 'react';
+import React from 'react';
 
 import styles from './style.module.scss'
 
-import {ReactComponent as AddIcon} from "../../assets/add.svg";
-import {useActions} from "../../hooks/useActions.js";
-import {FaXmark} from "react-icons/fa6";
 import Todo from "../Todo/index.jsx";
 import AddTodoButton from "../AddTodoButton/index.jsx";
 
@@ -15,7 +12,6 @@ const Column = ({data}) => {
     todos,
     color
   } = data
-
   return (
     <div className={styles.mainColumnBlock}>
         <AddTodoButton
@@ -31,20 +27,20 @@ const Column = ({data}) => {
           {title}
         </span>
         </div>
-        <div className={styles.todoList}>
-          {todos.map(({id: todoId, description}) => (
-            <Todo
-              data={{
-                columnId: id,
-                todoId,
-                description
-              }}
-            />
-          ))}
-        </div>
+          <div className={styles.todoList}>
+            {todos.map(({id: todoId, description}) => (
+              <Todo
+                data={{
+                  columnId: id,
+                  todoId,
+                  description
+                }}
+              />
+            ))}
+          </div>
         <div className={styles.bottomShadow}/>
     </div>
   );
-  };
+};
 
   export default Column;
