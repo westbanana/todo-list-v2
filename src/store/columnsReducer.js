@@ -43,7 +43,6 @@ const columnsSlice = createSlice({
       })
     },
     addTodo: (state, {payload}) => {
-      console.log(payload)
       const {columnId} = payload
       const newTodo = {
         description: 'New Todo',
@@ -54,6 +53,28 @@ const columnsSlice = createSlice({
           return ({
             ...column,
             todos: [newTodo,...column.todos]
+          })
+        } else {
+          return column
+        }
+      })
+    },
+    updateTodo: (state, {payload}) => {
+      const { columnId, todoData } = payload
+      state.columns = state.columns.map(column => {
+        if (columnId === column.id) {
+          return ({
+            ...column,
+            todos: column.todos.map((todo) => {
+              if (todo.id === todoData.id) {
+                return {
+                  ...todo,
+                  description: todoData.description
+                }
+              } else {
+                return todo
+              }
+            })
           })
         } else {
           return column
