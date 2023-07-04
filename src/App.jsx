@@ -15,7 +15,8 @@ const App = () => {
   }, [columns])
   const {
     changeBackgroundColor,
-  } = useActions()
+  } = useActions();
+
   return (
     <div
       style={{
