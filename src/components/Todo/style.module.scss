@@ -12,7 +12,6 @@
   border: none;
   height: 100%;
   width: 100%;
-  cursor: grab;
   animation: showTodo 0.3s ease-in forwards;
   &::-webkit-scrollbar {
     width: 4px
@@ -41,4 +40,10 @@
   &:hover {
     color: rgb(255, 24, 24);
   }
+}
+
+.deleteTodo {
+  transform: translateX(-100%);
+  transition: all 0.3s;
+  //transform: translateX(-100%);
 }
