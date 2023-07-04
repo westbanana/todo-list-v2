@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import styles from "./style.module.scss";
 import {FaXmark} from "react-icons/fa6";
 import {useActions} from "../../hooks/useActions.js";
@@ -10,11 +10,36 @@ const Todo = ({data}) => {
     description
   } = data
   const {
-    deleteTodo
+    deleteTodo,
+    updateTodo
   } = useActions()
   const deleteTodoHanlder = (columnId, todoId) => {
     deleteTodo({columnId, todoId})
   }
+
+  const [todoDescription, setTodoDescription] = useState(description);
+  const refDescription = useRef();
+
+  useEffect(() => {
+    if (refDescription.current) {
+      refDescription.current.innerHTML = todoDescription ?? 'New Todo'
+    }
+  }, [])
+
+  const onInputHandler = (e) => {
+    setTodoDescription(e.target.innerHTML)
+  }
+
+  useEffect(() => {
+    const payload =  {
+      columnId,
+      todoData: {
+        id: todoId,
+        description: todoDescription
+      }
+    }
+    updateTodo(payload)
+  }, [todoDescription]);
 
   return (
     <div
@@ -22,11 +47,12 @@ const Todo = ({data}) => {
       key={todoId}
       className={styles.todoBlock}
     >
-      <span
+      <div
+        ref={refDescription}
+        onInput={onInputHandler}
+        contentEditable
         className={styles.todo}
-      >
-        {description}
-      </span>
+      />
       <div
         onClick={() => deleteTodoHanlder(
           columnId,
