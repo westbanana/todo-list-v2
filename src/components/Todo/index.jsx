@@ -7,22 +7,26 @@ const Todo = ({data}) => {
   const {
     todoId,
     columnId,
-    description
+    description,
   } = data
   const {
     deleteTodo,
     updateTodo
   } = useActions()
   const deleteTodoHanlder = (columnId, todoId) => {
-    deleteTodo({columnId, todoId})
+    divRef.current.classList.add(`${styles.deleteTodo}`)
+    setTimeout(() => {
+      deleteTodo({columnId, todoId})
+    }, 300)
   }
 
   const [todoDescription, setTodoDescription] = useState(description);
   const refDescription = useRef();
+  const divRef = useRef(null);
 
   useEffect(() => {
     if (refDescription.current) {
-      refDescription.current.innerHTML = todoDescription ?? 'New Todo'
+      refDescription.current.innerHTML = todoDescription ?? ''
     }
   }, [])
 
@@ -40,12 +44,11 @@ const Todo = ({data}) => {
     }
     updateTodo(payload)
   }, [todoDescription]);
-
   return (
     <div
-      draggable={true}
       key={todoId}
       className={styles.todoBlock}
+      ref={divRef}
     >
       <div
         ref={refDescription}
@@ -60,8 +63,7 @@ const Todo = ({data}) => {
         )}
         className={styles.xMarkIcon}
       >
-        <FaXmark
-        />
+        <FaXmark/>
       </div>
     </div>
   );
