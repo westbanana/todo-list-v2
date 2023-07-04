@@ -1,4 +1,4 @@
-{
+    {
   "name": "movie-project",
   "private": true,
   "version": "0.0.0",
@@ -20,7 +20,8 @@
     "react-redux": "^8.1.1",
     "redux": "^4.2.1",
     "sass": "^1.63.4",
-    "vite-plugin-svgr": "^3.2.0"
+    "vite-plugin-svgr": "^3.2.0",
+    "@react-buddy/ide-toolbox": "^2.3.1"
   },
   "devDependencies": {
     "@types/react": "^18.0.28",
