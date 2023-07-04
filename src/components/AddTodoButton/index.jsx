@@ -12,11 +12,17 @@ const AddTodoButton = ({data}) => {
     addTodo
   } = useActions();
 
+  const addTodoHandler = () => {
+    addTodo({columnId});
+  }
+
   return (
-    <div className={styles.addIconBlock}>
+    <div
+      className={styles.addIconBlock}
+    >
       <HiPlus
         className={styles.addIcon}
-        onClick={() => addTodo({columnId})}
+        onClick={addTodoHandler}
       />
     </div>
   );
