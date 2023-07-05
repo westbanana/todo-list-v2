@@ -1,4 +1,5 @@
 import {createSlice} from "@reduxjs/toolkit";
+import {createUuid} from "../helpers/createUuid.js";
 
 const initialState = {
   columns: JSON.parse(localStorage.getItem('columns'))?.length
@@ -24,7 +25,6 @@ const initialState = {
         },
       ],
 };
-
 const columnsSlice = createSlice({
   name: 'columns',
   initialState: initialState,
@@ -43,16 +43,17 @@ const columnsSlice = createSlice({
       })
     },
     addTodo: (state, {payload}) => {
+      console.log(payload);
       const {columnId} = payload
       const newTodo = {
         description: 'New Todo',
-        id: Date.now(),
+        id: createUuid(),
       }
       state.columns = state.columns.map(column => {
         if (column.id === columnId) {
           return ({
             ...column,
-            todos: [newTodo,...column.todos]
+            todos: [newTodo, ...column.todos]
           })
         } else {
           return column
