@@ -30,6 +30,7 @@ const Column = ({data}) => {
           <div className={styles.todoList}>
             {todos.map(({id: todoId, description}) => (
               <Todo
+                key={todoId}
                 data={{
                   columnId: id,
                   todoId,
