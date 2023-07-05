@@ -2,6 +2,7 @@ import React, {useEffect, useRef, useState} from 'react';
 import styles from "./style.module.scss";
 import {FaXmark} from "react-icons/fa6";
 import {useActions} from "../../hooks/useActions.js";
+import {MdDragIndicator} from "react-icons/md";
 
 const Todo = ({data}) => {
   const {
@@ -26,7 +27,7 @@ const Todo = ({data}) => {
 
   useEffect(() => {
     if (refDescription.current) {
-      refDescription.current.innerHTML = todoDescription ?? ''
+      refDescription.current.innerHTML = todoDescription;
     }
   }, [])
 
@@ -50,6 +51,11 @@ const Todo = ({data}) => {
       className={styles.todoBlock}
       ref={divRef}
     >
+      <div
+        className={styles.dragIconBlock}
+      >
+        <MdDragIndicator/>
+      </div>
       <div
         ref={refDescription}
         onInput={onInputHandler}
