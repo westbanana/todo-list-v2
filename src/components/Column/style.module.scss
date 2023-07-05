@@ -39,6 +39,7 @@
     min-height: 28px;
     height: calc(100% - 75px);
     overflow: auto;
+    overflow-x: hidden;
     gap: 20px;
     padding-bottom: 20px;
     &::-webkit-scrollbar {
