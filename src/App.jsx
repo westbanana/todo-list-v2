@@ -5,13 +5,14 @@ import ChangeColorMenu from "./components/ChangeColorMenu/index.jsx";
 import Column from "./components/Column/index.jsx";
 import { useSelector} from "react-redux";
 import {useActions} from "./hooks/useActions.js";
+
 const App = () => {
-  const { columns } = useSelector(prev => prev.columns)
-  const { backGroundColor } = useSelector(prev => prev.background)
+  const { columns } = useSelector(prev => prev.columns);
+  const { backGroundColor } = useSelector(prev => prev.background);
   useEffect(() => {
     const columnsJSON = JSON.stringify(columns)
     localStorage.setItem('columns', columnsJSON);
-  }, [columns])
+  }, [columns]);
   const {
     changeBackgroundColor,
   } = useActions();
