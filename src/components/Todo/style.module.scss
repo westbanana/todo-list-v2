@@ -4,6 +4,26 @@
   padding: 15px 20px;
   box-shadow: inset rgba(0, 0, 0, 25%) 0 0 4px;
   position: relative;
+  animation: mountBlock 0.3s ease-in-out forwards;
+}
+
+@keyframes mountBlock {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+.dragIconBlock {
+  position: absolute;
+  left: 2px;
+  top: 0;
+  display: flex;
+  align-items: center;
+  cursor: grab;
+  height: 100%;
 }
 
 .todo {
@@ -42,8 +62,21 @@
   }
 }
 
+
 .deleteTodo {
-  transform: translateX(-100%);
-  transition: all 0.3s;
-  //transform: translateX(-100%);
+  width: calc(100% - 26px);
+  border-radius: 15px 15px;
+  padding: 15px 20px;
+  box-shadow: inset rgba(0, 0, 0, 25%) 0 0 4px;
+  position: relative;
+  animation: unmountBlock 0.3s ease-in-out forwards;
+}
+
+@keyframes unmountBlock {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-100%);
+  }
 }
