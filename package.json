@@ -1,4 +1,4 @@
-    {
+{
   "name": "movie-project",
   "private": true,
   "version": "0.0.0",
@@ -10,17 +10,18 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@react-buddy/ide-toolbox": "^2.3.1",
     "@reduxjs/toolkit": "^1.9.5",
     "framer-motion": "^10.12.16",
     "react": "^18.2.0",
+    "react-beautiful-dnd": "^13.1.1",
     "react-dom": "^18.2.0",
     "react-icons": "^4.10.1",
     "react-query": "^3.39.3",
     "react-redux": "^8.1.1",
     "redux": "^4.2.1",
     "sass": "^1.63.4",
-    "vite-plugin-svgr": "^3.2.0",
-    "@react-buddy/ide-toolbox": "^2.3.1"
+    "vite-plugin-svgr": "^3.2.0"
   },
   "devDependencies": {
     "@types/react": "^18.0.28",

@@ -4,6 +4,7 @@ import styles from './style.module.scss'
 
 import Todo from "../Todo/index.jsx";
 import AddTodoButton from "../AddTodoButton/index.jsx";
+import {Droppable} from "react-beautiful-dnd";
 
 const Column = ({data}) => {
   const {
@@ -13,34 +14,47 @@ const Column = ({data}) => {
     color
   } = data
   return (
-    <div className={styles.mainColumnBlock}>
-        <AddTodoButton
-          data={{columnId: id}}
-        />
-        <div className={styles.columnTitleBlock}>
+        <div className={styles.mainColumnBlock}>
+          <AddTodoButton
+            data={{columnId: id}}
+          />
+          <div className={styles.columnTitleBlock}>
           <span
             className={styles.columnTitle}
             style={{
               color: color
             }}
           >
-          {title}
-        </span>
+            {title}
+          </span>
         </div>
-          <div className={styles.todoList}>
-            {todos.map(({id: todoId, description}) => (
-              <Todo
-                key={todoId}
-                data={{
-                  columnId: id,
-                  todoId,
-                  description
-                }}
-              />
-            ))}
-          </div>
-        <div className={styles.bottomShadow}/>
-    </div>
+          <Droppable droppableId={id}>
+            {(provided, snapshot) => (
+              <div
+                className={`
+                  ${styles.todoList}
+                  ${snapshot.isDragging ? 'dragactive' : ''}
+                `}
+                ref={provided.innerRef}
+                {...provided.droppableProps}
+              >
+                {todos.map(({id: todoId, description}, index) => (
+                  <Todo
+                    key={todoId}
+                    data={{
+                      columnId: id,
+                      todoId,
+                      description,
+                      todoIndex: index
+                    }}
+                  />
+                ))}
+                {provided.placeholder}
+              </div>
+            )}
+          </Droppable>
+          <div className={styles.bottomShadow}/>
+        </div>
   );
 };
 

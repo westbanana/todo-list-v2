@@ -3,12 +3,14 @@ import styles from "./style.module.scss";
 import {FaXmark} from "react-icons/fa6";
 import {useActions} from "../../hooks/useActions.js";
 import {MdDragIndicator} from "react-icons/md";
+import {Draggable} from "react-beautiful-dnd";
 
 const Todo = ({data}) => {
   const {
     todoId,
     columnId,
     description,
+    todoIndex
   } = data
   const {
     deleteTodo,
@@ -46,32 +48,45 @@ const Todo = ({data}) => {
     updateTodo(payload)
   }, [todoDescription]);
   return (
-    <div
-      key={todoId}
-      className={styles.todoBlock}
-      ref={divRef}
-    >
-      <div
-        className={styles.dragIconBlock}
-      >
-        <MdDragIndicator/>
-      </div>
-      <div
-        ref={refDescription}
-        onInput={onInputHandler}
-        contentEditable
-        className={styles.todo}
-      />
-      <div
-        onClick={() => deleteTodoHanlder(
-          columnId,
-          todoId
-        )}
-        className={styles.xMarkIcon}
-      >
-        <FaXmark/>
-      </div>
-    </div>
+    <Draggable draggableId={todoId} index={todoIndex}>
+      {(provided, snapshot) => (
+        <div
+          className={`${snapshot.isDragging ? 'drag' : ''}`}
+          ref={provided.innerRef}
+          {...provided.draggableProps}
+          {...provided.dragHandleProps}
+        >
+          <div
+            key={todoId}
+            className={styles.todoBlock}
+            ref={divRef}
+          >
+            <div
+              className={`
+              ${styles.dragIconBlock}
+            `}
+            >
+              <MdDragIndicator/>
+            </div>
+            <div
+              ref={refDescription}
+              onInput={onInputHandler}
+              contentEditable
+              className={styles.todo}
+            />
+            <div
+              onClick={() => deleteTodoHanlder(
+                columnId,
+                todoId
+              )}
+              className={styles.xMarkIcon}
+            >
+              <FaXmark/>
+            </div>
+          </div>
+        </div>
+      )}
+    </Draggable>
   );
 };
 

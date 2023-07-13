@@ -5,6 +5,7 @@
   box-shadow: inset rgba(0, 0, 0, 25%) 0 0 4px;
   position: relative;
   animation: mountBlock 0.3s ease-in-out forwards;
+  background-color: white;
 }
 
 @keyframes mountBlock {
@@ -24,6 +25,10 @@
   align-items: center;
   cursor: grab;
   height: 100%;
+}
+
+.drag {
+  box-shadow: 0 0 20px black;
 }
 
 .todo {

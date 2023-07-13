@@ -6,19 +6,19 @@ const initialState = {
     ? JSON.parse(localStorage.getItem('columns'))
     : [
         {
-          id: 1,
+          id: 'not-started',
           title: 'Not started',
           todos: [],
           color: '#FF1818'
         },
         {
-          id: 2,
+          id: 'in-progress',
           title: 'In progress',
           todos: [],
           color: '#1890FF'
         },
         {
-          id: 3,
+          id: 'completed',
           title: 'Completed',
           todos: [],
           color: '#14DE7D'
