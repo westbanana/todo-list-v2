@@ -29,8 +29,12 @@ const columnsSlice = createSlice({
   name: 'columns',
   initialState: initialState,
   reducers: {
+    changeColumns: (state, {payload}) => {
+      const {newColumns} = payload;
+      state.columns = newColumns
+    },
     deleteTodo: (state, {payload}) => {
-      const {columnId, todoId} = payload
+      const {columnId, todoId} = payload;
       state.columns = state.columns.map(column => {
         if (column.id === columnId) {
           return ({
