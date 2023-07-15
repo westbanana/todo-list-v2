@@ -23,7 +23,6 @@ const App = () => {
   } = useActions();
   const onDragEndHandler = (result) => {
     const { destination, source } = result;
-    console.log(result)
     if (!destination) {
       return null;
     }
@@ -36,58 +35,47 @@ const App = () => {
     const draggedTodo = columns.find(
       (column) => column.id === source.droppableId
     ).todos[source.index];
-    const updatedColumns = columns.map((column) => {
-      if (
-        column.id === destination.droppableId
-      ) {
+    let updatedColumns;
+    if (destination.droppableId === source.droppableId) {
+      const currentColumn = columns.find(e => e.id === destination.droppableId);
+      updatedColumns = columns.map((column) => {
+        if (source.droppableId === column.id) {
+          const newTodos = [...column.todos];
+          newTodos.splice(source.index, 1);
+          newTodos.splice(destination.index, 0, currentColumn.todos[source.index])
+          return {
+            ...column,
+            todos: newTodos
+          }
+        } else {
+          return column
+        }
+      })
+    } else {
+      updatedColumns = columns.map((column) => {
+      if (column.id === destination.droppableId) {
         const newTodos = [...column.todos];
-        newTodos.splice(source.index, 1);
         newTodos.splice(destination.index, 0, draggedTodo);
         return {
           ...column,
           todos: newTodos,
         };
-      } else if (column.id === destination.droppableId) {
-        const newTodos = [...column.todos];
-        newTodos.splice(destination.index, 0, draggedTodo);
-        return {
-          ...column,
-          todos: newTodos,
-        };
-      }
-      else if (column.id === source.droppableId) {
+
+      } else if (column.id === source.droppableId) {
         const newTodos = [...column.todos];
         newTodos.splice(source.index, 1);
         return {
           ...column,
           todos: newTodos,
         };
+      } else {
+        return column;
       }
-      return column;
-    })
-    // const updatedColumns = columns.map((column) => {
-    //   if (column.id === destination.droppableId) {
-    //     const newTodos = [...column.todos];
-    //     newTodos.splice(destination.index, 0, draggedTodo);
-    //     return {
-    //       ...column,
-    //       todos: newTodos,
-    //     };
-    //   }
-    //   if (column.id === source.droppableId) {
-    //     const newTodos = [...column.todos];
-    //     newTodos.splice(source.index, 1);
-    //     return {
-    //       ...column,
-    //       todos: newTodos,
-    //     };
-    //   }
-    //   return column;
-    // });
+      })
+    }
     changeColumns({
       newColumns: updatedColumns,
     });
-    // console.log(updatedColumns)
   }
   return (
     <div
