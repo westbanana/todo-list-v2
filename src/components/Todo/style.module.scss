@@ -1,7 +1,24 @@
+.todoLength {
+  display: block;
+  font-size: 10px;
+  width: 100%;
+  text-align: end;
+  padding-right: 30px;
+  animation: mountTodoLength 0.3s ease-in-out forwards;
+}
+
+@keyframes mountTodoLength {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
 .todoBlock {
   width: calc(100% - 26px);
   border-radius: 15px 15px;
-  padding: 15px 20px;
   box-shadow: inset rgba(0, 0, 0, 25%) 0 0 4px;
   position: relative;
   animation: mountBlock 0.3s ease-in-out forwards;
@@ -25,10 +42,14 @@
   align-items: center;
   cursor: grab;
   height: 100%;
+  &:hover {
+    transition: 0.3s;
+    opacity: 0.3;
+  }
 }
 
-.drag {
-  box-shadow: 0 0 20px black;
+.draggedTodo {
+  box-shadow: rgba(0, 0, 0, 0.32) 0 0 15px;
 }
 
 .todo {
@@ -37,6 +58,7 @@
   border: none;
   height: 100%;
   width: 100%;
+  padding: 20px 5px 20px 25px;
   animation: showTodo 0.3s ease-in forwards;
   &::-webkit-scrollbar {
     width: 4px
@@ -51,22 +73,6 @@
     border-radius: 5px;
   }
 }
-
-.xMarkIcon {
-  position: absolute;
-  right: -20px;
-  top: 0;
-  transition: 0.3s;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  &:hover {
-    color: rgb(255, 24, 24);
-  }
-}
-
 
 .deleteTodo {
   width: calc(100% - 26px);
