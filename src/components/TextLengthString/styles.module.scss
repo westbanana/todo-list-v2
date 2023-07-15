@@ -1,0 +1,17 @@
+.todoLength {
+  display: block;
+  font-size: 10px;
+  width: 100%;
+  text-align: end;
+  padding-right: 30px;
+  animation: mountTodoLength 0.3s ease-in-out forwards;
+}
+
+@keyframes mountTodoLength {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
