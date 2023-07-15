@@ -96,9 +96,10 @@ const App = () => {
       <DragDropContext
         onDragEnd={onDragEndHandler}
       >
-        {columns.map((column) => (
+        {columns.map((column, index) => (
           <Column
             key={column.id}
+            index={index}
             data={column}
           />
         ))}
