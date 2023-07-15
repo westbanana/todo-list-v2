@@ -6,7 +6,7 @@ import Todo from "../Todo/index.jsx";
 import AddTodoButton from "../AddTodoButton/index.jsx";
 import {Droppable} from "react-beautiful-dnd";
 
-const Column = ({data}) => {
+const Column = ({data, index}) => {
   const {
     id,
     title,
@@ -15,9 +15,11 @@ const Column = ({data}) => {
   } = data
   return (
         <div className={styles.mainColumnBlock}>
-          <AddTodoButton
-            data={{columnId: id}}
-          />
+          {index === 0 && (
+            <AddTodoButton
+              data={{columnId: id}}
+            />
+          )}
           <div className={styles.columnTitleBlock}>
           <span
             className={styles.columnTitle}
