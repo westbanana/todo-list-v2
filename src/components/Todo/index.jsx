@@ -1,9 +1,11 @@
 import React, {useEffect, useRef, useState} from 'react';
 import styles from "./style.module.scss";
-import {FaXmark} from "react-icons/fa6";
 import {useActions} from "../../hooks/useActions.js";
 import {MdDragIndicator} from "react-icons/md";
 import {Draggable} from "react-beautiful-dnd";
+import {cursorToEnd} from "../../helpers/cursorToEnd.js";
+import DeleteTodoButton from "../DeleteTodoButton/index.jsx";
+import TextLengthString from "../TextLengthString/index.jsx";
 
 const Todo = ({data}) => {
   const {
@@ -12,30 +14,20 @@ const Todo = ({data}) => {
     description,
     todoIndex
   } = data
+
   const {
-    deleteTodo,
     updateTodo
   } = useActions()
-  const deleteTodoHanlder = (columnId, todoId) => {
-    divRef.current.classList.add(`${styles.deleteTodo}`)
-    setTimeout(() => {
-      deleteTodo({columnId, todoId})
-    }, 300)
-  }
 
   const [todoDescription, setTodoDescription] = useState(description);
   const refDescription = useRef();
   const divRef = useRef(null);
-
+  const todoMaxLength = 400;
   useEffect(() => {
     if (refDescription.current) {
       refDescription.current.innerHTML = todoDescription;
     }
-  }, [])
-
-  const onInputHandler = (e) => {
-    setTodoDescription(e.target.innerHTML)
-  }
+  }, []);
 
   useEffect(() => {
     const payload =  {
@@ -44,46 +36,69 @@ const Todo = ({data}) => {
         id: todoId,
         description: todoDescription
       }
-    }
-    updateTodo(payload)
+    };
+    updateTodo(payload);
   }, [todoDescription]);
+
+  const onInputHandler = (e) => {
+    setTodoDescription(e.target.innerHTML);
+  };
+
+  const onKeyUpHandler = (e) => {
+    if (refDescription.current) {
+      let text = e.target.innerHTML;
+      refDescription.current.innerHTML = text.replace('', '').substring(0, todoMaxLength);
+      cursorToEnd(refDescription.current);
+      setTodoDescription(refDescription.current.innerHTML);
+    }
+  };
+
+  const onClickHandler = () => {
+    refDescription.current.focus();
+  };
+
   return (
     <Draggable draggableId={todoId} index={todoIndex}>
       {(provided, snapshot) => (
         <div
-          className={`${snapshot.isDragging ? 'drag' : ''}`}
           ref={provided.innerRef}
           {...provided.draggableProps}
           {...provided.dragHandleProps}
         >
           <div
             key={todoId}
-            className={styles.todoBlock}
+            className={`
+              ${styles.todoBlock}
+            `}
             ref={divRef}
           >
             <div
-              className={`
-              ${styles.dragIconBlock}
-            `}
+              className={styles.dragIconBlock}
             >
               <MdDragIndicator/>
             </div>
             <div
               ref={refDescription}
+              onClick={onClickHandler}
               onInput={onInputHandler}
+              onKeyUp={onKeyUpHandler}
               contentEditable
               className={styles.todo}
             />
-            <div
-              onClick={() => deleteTodoHanlder(
-                columnId,
-                todoId
-              )}
-              className={styles.xMarkIcon}
-            >
-              <FaXmark/>
-            </div>
+            {!snapshot.isDragging && (
+              <DeleteTodoButton
+                columnId={columnId}
+                todoId={todoId}
+                todoRef={divRef}
+              />
+            )}
           </div>
+          {!snapshot.isDragging && (
+            <TextLengthString
+              text={todoDescription}
+              maxLength={todoMaxLength}
+            />
+          )}
         </div>
       )}
     </Draggable>
