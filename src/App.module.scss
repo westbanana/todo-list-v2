@@ -3,12 +3,21 @@
   width: 100%;
   position: relative;
   overflow: hidden;
-  transition: background 0.3s;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
+  animation: mount 0.3s linear forwards;
 }
+
+  @keyframes mount {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
 
 .blurBlock {
   height: 100vh;
@@ -20,4 +29,11 @@
   opacity: 0;
   left: -100%;
   transition: 0.3s;
+}
+
+@media (max-width: 950px) {
+  .main {
+    flex-direction: column;
+    gap: 10px;
+  }
 }
