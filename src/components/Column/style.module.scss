@@ -2,7 +2,7 @@
   height: 77vh;
   width: 26vw;
   max-width: 500px;
-  min-width: 200px;
+  min-width: 300px;
   box-shadow: rgba(0, 0, 0, 21%) 5px 4px 4px;
   border-radius: 21px 21px;
   background: white;
@@ -92,5 +92,15 @@
   }
   to {
     opacity: 1;
+  }
+}
+
+@media (max-width: 950px) {
+  .mainColumnBlock {
+    height: 30vh;
+    width: 80vw;
+    .columnTitle {
+      margin-bottom: 25px;
+    }
   }
 }
