@@ -8,17 +8,7 @@
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  animation: xmarkMount 0.1s ease-in-out forwards;
   &:hover {
     color: rgb(255, 24, 24);
-  }
-}
-
-@keyframes xmarkMount {
-  from {
-    transform: scale(0.1);
-  }
-  to {
-    transform: scale(1);
   }
 }
